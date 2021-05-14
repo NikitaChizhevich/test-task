@@ -1,0 +1,22 @@
+::ng-deep .ct-label {
+    font-size: 13px;
+    color: white!important;
+}
+
+.custom-buttons {
+    display: flex
+}
+
+.custom-button {
+    padding: 0px 5px;
+    color: white;
+    border-radius: 4px;
+    font-size: 13px;
+    margin: 0px 5px;
+    cursor: pointer;
+    background-color: #26c6da;
+}
+
+.custom-button.active {
+    background-color: #47a44b;
+}

@@ -1,0 +1,243 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons" style="line-height: 1.3;">$</i>
+                        </div>
+                        <p class="card-category">Current Rate</p>
+                        <h3 class="card-title" style="color: #4da752;">{{currentUsdRate}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">date_range</i> Last 24 Hours
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons" style="line-height: 1.3;">&euro;</i>
+                        </div>
+                        <p class="card-category">Current Rate</p>
+                        <h3 class="card-title" style="color: #1abdd1;">{{currentEurRate}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <p class="card-category">Used Space</p>
+                        <h3 class="card-title">
+                            49/50
+                            <small>GB</small>
+                        </h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons text-danger">warning</i>
+                            <a href="javascript:void(0)">Get More Space...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">info_outline</i>
+                        </div>
+                        <p class="card-category">Fixed Issues</p>
+                        <h3 class="card-title">75</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">local_offer</i> Tracked from Github
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="usdChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">USD</h4>
+                        <p class="card-category">
+                            <span class="{{ changeUsd < 0 ? 'text-danger' : 'text-success' }}"><i
+                  class="{{
+                    changeUsd < 0
+                      ? 'fa fa-long-arrow-down'
+                      : 'fa fa-long-arrow-up'
+                  }}"
+                ></i>
+                {{ changeUsd > 0 ? '+' + changeUsd : changeUsd }}
+              </span> Last change.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header-info">
+                        <div class="ct-chart" id="eurChart"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">EUR</h4>
+                        <p class="card-category">
+                            <span class="{{ changeEur < 0 ? 'text-danger' : 'text-success' }}"><i
+                  class="{{
+                    changeEur < 0
+                      ? 'fa fa-long-arrow-down'
+                      : 'fa fa-long-arrow-up'
+                  }}"
+                ></i>
+                {{ changeEur > 0 ? '+' + changeEur : changeEur }}
+              </span> Last change.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-danger">
+                      <div class="ct-chart" id="completedTasksChart"></div>
+                  </div>
+                  <div class="card-body">
+                      <h4 class="card-title">Completed Tasks</h4>
+                      <p class="card-category">Last Campaign Performance</p>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">access_time</i> campaign sent 2 days ago
+                      </div>
+                  </div>
+              </div>
+          </div> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div style="background: #00bcd4;" class="card-header card-header-tabs card-header-primary">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <span class="nav-tabs-title">Converter</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="{{leftCurrency}}" type="text" [formControl]="rubInput">
+                                </mat-form-field>
+                                <div class="custom-buttons">
+                                    <span class="custom-button" [ngClass]="{'active': leftCurrency === 'RUR'}" (click)="setActiveLeftCurrency('RUR')">
+                                        RUB
+                                    </span>
+                                    <span class="custom-button" [ngClass]="{'active': leftCurrency === 'USD'}" (click)="setActiveLeftCurrency('USD')">
+                                        USD
+                                    </span>
+                                    <span class="custom-button" [ngClass]="{'active': leftCurrency === 'EUR'}" (click)="setActiveLeftCurrency('EUR')">
+                                        EUR
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex flex-column">
+                                <button mat-raised-button class="btn btn-info" (click)="convert()">Convert</button>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput style="cursor: default;" placeholder="{{rightCurrency}}" type="text" [formControl]="convertInput" readonly>
+                                </mat-form-field>
+                                <div class="custom-buttons">
+                                    <span class="custom-button" [ngClass]="{'active': rightCurrency === 'RUR'}" (click)="setActiveRightCurrency('RUR')">
+                                        RUB
+                                    </span>
+                                    <span class="custom-button" [ngClass]="{'active': rightCurrency === 'USD'}" (click)="setActiveRightCurrency('USD')">
+                                        USD
+                                    </span>
+                                    <span class="custom-button" [ngClass]="{'active': rightCurrency === 'EUR'}" (click)="setActiveRightCurrency('EUR')">
+                                        EUR
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Employees Stats</h4>
+                        <p class="card-category">New employees on 15th September, 2016</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Salary</th>
+                                <th>Country</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Dakota Rice</td>
+                                    <td>$36,738</td>
+                                    <td>Niger</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Minerva Hooper</td>
+                                    <td>$23,789</td>
+                                    <td>Curaçao</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Sage Rodriguez</td>
+                                    <td>$56,142</td>
+                                    <td>Netherlands</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Philip Chaney</td>
+                                    <td>$38,735</td>
+                                    <td>Korea, South</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
